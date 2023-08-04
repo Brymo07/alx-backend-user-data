@@ -6,7 +6,7 @@ Script for handling Personal Data
 from typing import List
 import re
 import logging
-from os
+from os import environ
 import mysql.connector
 
 
@@ -62,10 +62,10 @@ def get_db() -> mysql.connector.connection.MySQLConnection:
         A MySQLConnection object using connection details from
         environment variables
     """
-    username = os.environ.get("PERSONAL_DATA_DB_USERNAME", "root")
-    password = os.environ.get("PERSONAL_DATA_DB_PASSWORD", "")
-    host = os.environ.get("PERSONAL_DATA_DB_HOST", "localhost")
-    db_name = os.environ.get("PERSONAL_DATA_DB_NAME")
+    username = environ.get("PERSONAL_DATA_DB_USERNAME", "root")
+    password = environ.get("PERSONAL_DATA_DB_PASSWORD", "")
+    host = environ.get("PERSONAL_DATA_DB_HOST", "localhost")
+    db_name = environ.get("PERSONAL_DATA_DB_NAME")
 
     cnx = mysql.connector.connection.MySQLConnection(user=username,
                                                      password=password,
